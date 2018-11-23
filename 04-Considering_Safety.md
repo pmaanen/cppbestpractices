@@ -29,7 +29,6 @@ public:
  * Getters
    * Returning by `&` or `const &` can have significant performance savings when the normal use of the returned value is for observation
    * Returning by value is better for thread safety and if the normal use of the returned value is to make a copy anyhow, there's no performance lost
-   * If your API uses covariant return types, you must return by `&` or `*`
  * Temporaries and local values
    * Always return by value.
 
@@ -113,11 +112,40 @@ Both of these guarantee contiguous memory layout of objects and can (and should)
 
 Also, [avoid](http://stackoverflow.com/questions/3266443/can-you-use-a-shared-ptr-for-raii-of-c-style-arrays) using `std::shared_ptr` to hold an array. 
 
+### Special Considerations for Real-Time Code
+
+It is not advisable to allocate and deallocate memory in a Real-Time audio processing context. Make sure to preallocate space for vectors before with 
+
+```
+// Bad Idea
+void process(mha_wave_t* s){
+std::vector<float> myVect;
+for(int i=0;i<128;++ii)
+myVect.push_back(ii);
+}
+
+// Better Idea
+class my_plugin_class {
+std::vector<float> myVect;
+
+void my_plugin_class(){ //ctor
+myVect.reserve(128); // I need to store 128 floats.
+}
+};
+void process(mha_wave_t* s){
+for(int i=0;i<128;++ii)
+myVect[ii]=ii;
+}
+```
 ## Use Exceptions
 
 Exceptions cannot be ignored. Return values, such as using `boost::optional`, can be ignored and if not checked can cause crashes or memory errors. An exception, on the other hand, can be caught and handled. Potentially all the way up the highest level of the application with a log and automatic restart of the application.
 
 Stroustrup, the original designer of C++, [makes this point](http://www.stroustrup.com/bs_faq2.html#exceptions-why) much better than I ever could.
+
+### Special Considerations for Real-Time Code
+
+Exceptions are not real-time safe. Use them very judiciously in real-time code.
 
 ## Use C++-style cast instead of C-style cast
 Use the C++-style cast (static\_cast<>, dynamic\_cast<> ...) instead of the C-style cast. The C++-style cast allows more compiler checks and is considerably safer.
@@ -133,13 +161,3 @@ int i = static_cast<int>(x);
 Additionally the C++ cast style is more visible and has the possibility to search for.
 
 But consider refactoring of program logic (for example, additional checking on overflow and underflow) if you need to cast `double` to `int`. Measure three times and cut 0.9999999999981 times.
-
-## Do not define a variadic function
-Variadic functions can accept a variable number of parameters. The probably best known example is printf(). You have the possibility to define this kind of functions by yourself but this is a possible security risk. The usage of variadic functions is not type safe and the wrong input parameters can cause a program termination with an undefined behavior. This undefined behavior can be exploited to a security problem.
-If you have the possibility to use a compiler that supports C++11, you can use variadic templates instead.
-
-[It is technically possible to make typesafe C-style variadic functions with some compilers](https://github.com/lefticus/cppbestpractices/issues/53)
-
-## Additional Resources
-
-[How to Prevent The Next Heartbleed](http://www.dwheeler.com/essays/heartbleed.html) by David Wheeler is a good analysis of the current state of code safety and how to ensure safe code.

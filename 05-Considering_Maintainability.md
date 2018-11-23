@@ -38,7 +38,7 @@ Know and understand the existing C++ standard algorithms and put them to use. Se
 assert(set_value(something));
 
 // Better Idea
-[[maybe_unused]] const auto success = set_value(something);
+const auto success = set_value(something);
 assert(success);
 ```
 

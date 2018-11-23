@@ -7,8 +7,7 @@
  6. [Considering Portability](06-Considering_Portability.md)
  7. [Considering Threadability](07-Considering_Threadability.md)
  8. [Considering Performance](08-Considering_Performance.md)
- 9. [Enable Scripting](09-Enable_Scripting.md)
- 10. [Further Reading](10-Further_Reading.md)
- 11. [Final Thoughts](11-Final_Thoughts.md)
+ 9. [Further Reading](09-Further_Reading.md)
+ 10. [Final Thoughts](10-Final_Thoughts.md)
 
 

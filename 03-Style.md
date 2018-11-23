@@ -1,5 +1,4 @@
 # Style
-
 Consistency is the most important aspect of style. The second most important aspect is following a style that the average C++ programmer is used to reading.
 
 C++ allows for arbitrary-length identifier names, so there's no reason to be terse when naming things. Use descriptive names, and be consistent in the style.
@@ -7,7 +6,7 @@ C++ allows for arbitrary-length identifier names, so there's no reason to be ter
  * `CamelCase`
  * `snake_case`
 
-are common examples. *snake_case* has the advantage that it can also work with spell checkers, if desired.
+are common examples. *snake_case* has the advantage that it can also work with spell checkers, if desired. Currently the MHA team uses *snake_case*. 
 
 ## Establishing A Style Guideline
 
@@ -22,8 +21,6 @@ Every IDE and many editors have support for clang-format built in or easily inst
      * https://github.com/rhysd/vim-clang-format
      * https://github.com/chiel92/vim-autoformat
  * XCode: https://github.com/travisjeffery/ClangFormat-Xcode
-
-
 
 ## Common C++ Naming Conventions
 

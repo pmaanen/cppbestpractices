@@ -1,7 +1,5 @@
 # Further Reading
 
-*Note: This book has now inspired a video series from O'Reilly, [Learning C++ Best Practices](http://shop.oreilly.com/product/0636920049814.do)*
-
 ## C++
 
  * https://github.com/isocpp/CppCoreGuidelines The C++ Core Guidelines are a set of tried-and-true guidelines, rules, and best practices about coding in C++ 

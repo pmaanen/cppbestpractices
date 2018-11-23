@@ -11,6 +11,8 @@ In all cases brevity and succinctness is preferred. Examples are preferred for m
 
 *Disclaimer*
 
-This document is based on my personal experiences. You are not supposed to agree with it 100%. It exists as a book on [GitHub](https://github.com/lefticus/cppbestpractices) so that you can fork it for your own uses or submit back proposed changes for everyone to share.
-
-This book has inspired an O'Reilly video: [Learning C++ Best Practices](http://shop.oreilly.com/product/0636920049814.do)
+This is a condensed version of Jason Turner's cppbestpractices. I removed the rules less relevant for our purposes and added 
+some points specific to real time audio processing. We (meaning the MHA team) do not currently follow all or even most of 
+these rules. Some of our workflows are mostly legitimized by the combination of historic reasons and inertia.
+I however would strongly suggest to use these rules when starting a new project, even if it is only a new plugin 
+within MHA.
